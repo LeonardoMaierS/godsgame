@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Game</title>
+    <script src="src/utils.js"></script>
+    <script src="src/sounds.js"></script>
+    <script src="src/sprites.js"></script>
+    <script src="src/god.js"></script>
+    <script src="src/bonus.js"></script>
+    <script src="src/floor.js"></script>
+    <script src="src/obstacles.js"></script>
+    <style>
+      canvas {
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      let context,
+        canvas,
+        height,
+        width,
+        img,
+        maxJumpAnubis = 3,
+        velocity = 6,
+        record,
+        currentState = 0,
+        states = { play: 0, playing: 1, lose: 2 },
+        anubis = { play: false, dead: false },
+        athena = { play: false, dead: false },
+        wukong = { play: false, dead: false };
+
+      function main() {
+        height = window.innerHeight;
+        width = window.innerWidth;
+
+        if (height >= 500) {
+          height = 600;
+          width = 600;
+        }
+
+        canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        canvas.style.border = "5px solid #000";
+
+        context = canvas.getContext("2d");
+        document.body.appendChild(canvas);
+
+        document.addEventListener("mousedown", (event) => click(event));
+
+        document.addEventListener("keydown", (event) =>
+          event.code === "Space" && currentState === states.playing
+            ? click(event)
+            : null
+        );
+
+        currentState = states.play;
+        record = localStorage.getItem("record") || 0;
+
+        img = new Image();
+        img.src = "image/sprites.png";
+
+        soundHome = new sound("sound/home.mp3");
+        soundJump = new sound("sound/jump.wav");
+        soundDead = new sound("sound/dead.wav");
+        soundBonus = new sound("sound/bonus.wav");
+        soundPlayAnubis = new sound("sound/playAnubis.mp3");
+        soundPlayAthena = new sound("sound/playAthena.mp3");
+
+        running();
+      }
+
+      main();
+    </script>
+  </body>
+</html>
