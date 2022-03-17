@@ -24,7 +24,7 @@ function click(event) {
       event.x > window.innerWidth * 0.35 &&
       event.x < window.innerWidth * 0.65 &&
       event.y > window.innerHeight * 0.48 &&
-      event.y < window.innerHeight * 0.53)
+      event.y < window.innerHeight * 0.55)
   ) {
     soundHome.stop();
     soundPlayAnubis.play();
@@ -37,8 +37,8 @@ function click(event) {
     (currentState === states.play &&
       event.x > window.innerWidth * 0.35 &&
       event.x < window.innerWidth * 0.65 &&
-      event.y > window.innerHeight * 0.56 &&
-      event.y < window.innerHeight * 0.61)
+      event.y > window.innerHeight * 0.57 &&
+      event.y < window.innerHeight * 0.63)
   ) {
     soundHome.stop();
     soundPlayAthena.play();
