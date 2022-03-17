@@ -76,9 +76,9 @@ function updateStatus() {
 }
 
 function draw() {
-  if (anubis.play) spriteBackground.draw(0, 0, 600, 600);
+  if (anubis.play) spriteBackgroundAnubis.draw(0, 0, 600, 600);
   else if (athena.play) spriteBackgroundAthena.draw(0, 0, 600, 600);
-  else spriteBackground.draw(0, 0, 600, 600);
+  else spriteBackgroundHome.draw(0, 0, 600, 600);
 
   if (currentState === states.playing) {
     floor.draw();
@@ -87,19 +87,16 @@ function draw() {
   }
 
   if (currentState === states.play) {
-    context.fillStyle = "blue";
-    context.fillRect(width / 2 - 100, height / 2 - 20, 200, 50);
+    spriteButtonWukong.draw(width / 2 - 150, height / 2 + 110);
 
-    context.fillStyle = "green";
-    context.fillRect(width / 2 - 100, height / 2 + 50, 200, 50);
+    spriteButtonAthena.draw(width / 2 - 140, height / 2 + 60);
 
-    context.fillStyle = "red";
-    context.fillRect(width / 2 - 100, height / 2 + 120, 200, 50);
+    spriteButtonAnubis.draw(width / 2 - 150, height / 2 - 20);
   } else if (currentState === states.lose) {
     floor.draw();
 
     // @todo - set background image
-    // context.fillStyle = "red";
+    // context.fillStyle = "black";
     // context.fillRect(width / 2 - 50, height / 2 - 50, 100, 100);
 
     context.save();
@@ -109,9 +106,9 @@ function draw() {
     shadowOn();
     if (god.score > record) context.fillText("New Record!", -150, -65);
     else context.fillText(`Record: ${record}`, -110, -65);
-    shadowOff();
 
-    context.fillText(god.score, god.score < 10 ? -13 : -26, 19);
+    context.fillText(`Score: ${god.score}`, god.score < 10 ? -93 : -100, 19);
+    shadowOff();
 
     context.restore();
   }

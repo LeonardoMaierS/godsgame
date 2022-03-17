@@ -14,7 +14,7 @@ let bonus = {
     this.bon.push({
       x: width,
       y: 100,
-      width: 280,
+      width: 50,
       sprites: spriteBonusAthena,
     });
   },
@@ -30,7 +30,7 @@ let bonus = {
       if (
         bonus.x <= god.x + god.width &&
         god.x <= bonus.x + bonus.width &&
-        bonus.y >= god.y + god.height
+        bonus.y + 50 >= god.y + god.height
       ) {
         soundBonus.play();
         god.score += 3;

@@ -20,7 +20,7 @@ let obstacles = {
     this.obs.push({
       x: width,
       y: floor.y - 100 - randon,
-      width: 190,
+      width: 120,
       spriteDown: spriteObsDownAthena,
       spriteUp: spriteObsUpAthena,
     });
@@ -63,12 +63,15 @@ let obstacles = {
       const obstacles = this.obs[i];
       this.obs[i].x -= velocity;
 
-      // @todo - collision error
       if (
-        (god.x + god.width > obstacles.x &&
-          god.x > obstacles.x &&
-          god.y + god.height < 550 - obstacles.y) ||
-        god.y > 600
+        (god.x < obstacles.x + obstacles.width &&
+          god.x + god.width > obstacles.x &&
+          god.y + god.height > obstacles.y) ||
+        (god.x < obstacles.x + obstacles.width &&
+          god.x + god.width > obstacles.x &&
+          god.y + god.height < obstacles.y - 230) ||
+        god.y > 600 ||
+        god.height + god.y < -100
       ) {
         this.deadGod("athena");
       } else if (obstacles.x == 0) {
@@ -98,7 +101,7 @@ let obstacles = {
 
       if (athena.play) {
         this.obs[i].spriteDown.draw(this.obs[i].x, this.obs[i].y);
-        this.obs[i].spriteUp.draw(this.obs[i].x, this.obs[i].y - 450);
+        this.obs[i].spriteUp.draw(this.obs[i].x, this.obs[i].y - 700);
       }
     }
     shadowOff();
